@@ -244,10 +244,15 @@ Izvēlies vienu konkrētu ievadi un pieraksti mainīgo vērtības pa soļiem.
 ```markdown
 | Solis | Nosacījums | Mainīgie pirms | Veiktā darbība | Mainīgie pēc | Izvade |
 |------:|------------|-----------------|----------------|----------------|--------|
-| 0     | —          |                 | Sākums         |                |        |
-| 1     |            |                 |                |                |        |
-| 2     |            |                 |                |                |        |
-```
+| 0     | —          |      -           | Sākums  ievade 7       |  meklejamais = 7, pirmais_indekss = -1, visi_indeksi = []              |  -      |
+| 1     |   4 == 7 → Nē	         | i = 0                |   Nekas nemainās	             |  i = 0              |        |
+| 2     |   7 == 7 → Jā        |  i = 1               |  Saglabā indeksu              |     pirmais_indekss = 1, visi_indeksi = [1]       |  -      |  
+  3         2 == 7 → nē           i = 2                  Nekas nemainās                    i = 2                                             -                                                  
+  4         9 == 7 → Nē	          i=3                    Nekas nemainās                    i = 3                                             -
+  5          7 == 7 → Jā          i=4                    Pievieno indeksu                  pirmais_indekss = 1, visi_indeksi = [1, 4]        -
+   6       1 == 7 → Nē            i=5                    Nekas nemainās                    i = 5                                             -
+    7       Cikls beidzas       pirmais_indekss = 1	     Izvada rezultātu                   -                                                   Pirmais indekss: 1
+Visi indeksi: [1, 4]
 
 ## 3. Testa piemēri
 
@@ -255,11 +260,14 @@ Izveido vismaz četrus atšķirīgus testus.
 
 ```markdown
 | Testa veids | Ievade | Sagaidāmais rezultāts | Faktiskais rezultāts | Tests izturēts? |
-|-------------|--------|-----------------------|---------------------|-----------------|
-| Tipisks     |        |                       |                     |                 |
-| Robežgadījums |      |                       |                     |                 |
-| Tukša vai nederīga ievade | |                 |                     |                 |
-| Papildu tests |      |                       |                     |                 |
+|-------------|--------|-----------------------|---------------------|-----------------| 
+| Tipisks     | 7      |      Pirmais indekss: 1; Visi indeksi: [1, 4]   Pirmais indekss: 1; Visi indeksi: [1, 4]	  jā
+| Robežgadījums | 4    |       Pirmais indekss: 0; Visi indeksi: [0] |    Pirmais indekss: 0; Visi indeksi: [0]	    jā
+| Tukša vai nederīga ievade |(tikai Enter)     | Kļūda: ievade ir tukša!   Kļūda: ievade ir tukša!                  jā
+| Papildu tests | 99   |                       |Nav atrasts          |    Nav atrasts  |                             jā 
+| Papildu tests — pēdējais elements    1       |  Pirmais indekss: 5; Visi indeksi: [5]Pirmais indekss: 5; Visi indeksi: [5]  jā
+Papildu tests — nederīga ievade        abc         Kļūda: lūdzu ievadi veselu skaitli!Kļūda: lūdzu ievadi veselu skaitli! jā
+
 ```
 
 ## 4. Kļūda, pretpiemērs vai uzlabojums
